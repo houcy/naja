@@ -1,0 +1,123 @@
+{% extends 'base_site.html' %}
+{% block content %}
+    <div class="container theme-showcase" role="main">
+
+    <div class="page-header">
+        <ol class="breadcrumb">
+          <li><a href="#">主页</a></li>
+          <li><a href="#">任务管理</a></li>
+          <li class="active">MS17-010国内扫描</li>
+        </ol>
+    </div>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+
+      <div class="panel-body">
+        <p>
+          目标数量：<span class="label label-default">20</span>
+        </p>
+        <p>
+          发现漏洞：<span class="label label-danger">200</span>
+        </p>
+        <p>
+          采用模块：
+          <span class="label label-info">ms17-010</span>
+          <span class="label label-info">nmap</span>
+        </p>
+        <p>
+          任务状态：
+          <span class="label label-success">扫描中</span>
+        </p>
+      </div>
+
+    </div>
+
+    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">主机列表</a>
+      </li>
+      <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">发现漏洞</a>
+      </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+        <!-- start user projects -->
+        <table class="data table table-striped no-margin">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>主机</th>
+              <th>状态</th>
+              <th>发现漏洞</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>www.baidu.com</td>
+              <td class="vertical-align-mid">
+                <button type="button" class="btn btn-success btn-xs">扫描中</button>
+              </td>
+              <td>2</td>
+              <td>
+                <a href="task_host_details.html" class="btn btn-default btn-xs"><i class="fa fa-folder"></i> 查看 </a>
+                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- end user projects -->
+
+
+
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+        <!-- start user projects -->
+        <table class="data table table-striped no-margin">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>主机</th>
+              <th>漏洞</th>
+              <th>危险等级</th>
+              <th>信息</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>www.baidu.com</td>
+              <td>
+                <ul class="list-inline">
+                  <li>
+                    <button type="button" class="btn btn-default btn-xs">MS17-010</button>
+                  </li>
+
+                </ul>
+              </td>
+              <td class="vertical-align-mid">
+                <span class="label label-danger arrowed">高危</span>
+              </td>
+              <td>Server bounner: DLL7600.90...</td>
+              <td>
+                <a href="task_host_details.html" class="btn btn-default btn-xs"><i class="fa fa-folder"></i> 查看 </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- end user projects -->
+
+      </div>
+    </div>
+
+
+
+    <div class="page-header"></div>
+
+
+    </div>
+{% endblock %}

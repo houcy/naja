@@ -1,0 +1,101 @@
+{% extends 'base_site.html' %}
+{% block content %}
+    <div class="container theme-showcase" role="main">
+
+
+
+      <div class="page-header">
+        <ol class="breadcrumb">
+          <li><a href="#">主页</a></li>
+          <li><a href="#">漏洞库</a></li>
+          <li class="active">漏洞列表</li>
+        </ol>
+
+        <form class="form-horizontal">
+          <div class="form-group">
+
+            <div class="col-sm-3">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="主机、国家或漏洞名称">
+            </div>
+            <div class="col-sm-1">
+              <a  type="submit" class="btn btn-sm btn-success">搜索</a>
+            </div>
+          </div>
+          <div class="form-group">
+
+            <div class="col-sm-12">
+              <span class="label label-default">Search:</span>
+              <span class="label label-success">host:202.*</span>
+              <span class="label label-success">bug:ms17-010</span>
+              <span class="label label-success">country:美国</span>
+              <span class="label label-success">Port:80</span>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+      <!-- start user projects -->
+      <table class="data table table-striped">
+        <thead>
+          <tr>
+            <th>地区</th>
+            <th>主机</th>
+            <th>Port</th>
+            <th>漏洞</th>
+            <th>路径</th>
+            <th>最近发现时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bug in object_list %}
+          <tr>
+            <td>{{ bug.country }}</td>
+            <td>{{ bug.host }}</td>
+            <td>{{ bug.port }}</td>
+            <td>
+              <ul class="list-inline">
+                <li>
+                  <span class="label label-default">{{ bug.bug_name }}</span>
+                  <span class="label label-danger">{{ bug.bug_class }}</span>
+                </li>
+
+              </ul>
+            </td>
+            <td>{{ bug.road }}</td>
+            <td>
+              <ul class="list-inline">
+                <li>
+                  <span class="label label-default">{{ bug.last_time }}</span>
+                  <span class="label label-success">{{ bug.usable }}</span>
+                </li>
+
+              </ul>
+            </td>
+            <td>
+              <a href="task_host_details.html" class="btn btn-default btn-xs">详情</a>
+              <a href="task_host_details.html" class="btn btn-danger btn-xs">更新</a>
+              <a href="task_host_details.html" class="btn btn-warning btn-xs">删除</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- end user projects -->
+
+
+      <div class="page-header"></div>
+
+
+      <nav aria-label="...">
+        <ul class="pager">
+          <li class="previous"><a href="#">上一页</a></li>
+          <li class="next"><a href="#">下一页</a></li>
+        </ul>
+      </nav>
+
+
+    </div>
+{% endblock %}
