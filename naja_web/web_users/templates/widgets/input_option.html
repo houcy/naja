@@ -1,0 +1,1 @@
+{% if wrap_label %}<label class="{{ widget.attrs.sonclass }}" {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>{% endif %}{% include "django/forms/widgets/input.html" %}<span class="{{ widget.attrs.grandsonclass }}">{% if wrap_label %} {{ widget.label }}</span></label>{% endif %}

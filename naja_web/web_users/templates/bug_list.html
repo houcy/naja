@@ -5,15 +5,15 @@
       <div class="page-header">
         <ol class="breadcrumb">
           <li><a href="#">主页</a></li>
-          <li><a href="#">插件管理</a></li>
-          <li class="active">支持插件</li>
+          <li><a href="#">漏洞库</a></li>
+          <li class="active">漏洞列表</li>
         </ol>
 
         <form class="form-horizontal">
           <div class="form-group">
 
             <div class="col-sm-3">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="插件名称、CVE、MS编号">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="主机、国家或漏洞名称">
             </div>
             <div class="col-sm-1">
               <a  type="submit" class="btn btn-sm btn-success">搜索</a>
@@ -23,8 +23,10 @@
 
             <div class="col-sm-12">
               <span class="label label-default">Search:</span>
-              <span class="label label-success">id:cve-2014-4792</span>
-              <span class="label label-success">name:ms17-010</span>
+              <span class="label label-success">host:202.*</span>
+              <span class="label label-success">bug:ms17-010</span>
+              <span class="label label-success">country:美国</span>
+              <span class="label label-success">Port:80</span>
             </div>
           </div>
 
@@ -36,25 +38,26 @@
       <table class="data table table-striped">
         <thead>
           <tr>
-            <th>名称</th>
-            <th>CVE编号</th>
-            <th>利用等级</th>
-            <th>文件路径</th>
-            <th>用法</th>
-            <th>返回结果</th>
+            <th>地区</th>
+            <th>主机</th>
+            <th>Port</th>
+            <th>漏洞</th>
+            <th>路径</th>
+            <th>最近发现时间</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
-          {% for plugin in object_list %}
+          {% for bug in object_list %}
           <tr>
-            <td>{{ plugin.name }}</td>
-            <td>{{ plugin.cve }}</td>
-            <td>{{ plugin.cve }}</td>
+            <td>{{ bug.country }}</td>
+            <td>{{ bug.host }}</td>
+            <td>{{ bug.port }}</td>
             <td>
               <ul class="list-inline">
                 <li>
-                  <span class="label label-default">{{ plugin.python }}</span>
-                  <span class="label label-danger">{{ plugin.usage }}</span>
+                  <span class="label label-default">{{ bug.bug_name }}</span>
+                  <span class="label label-danger">{{ bug.bug_class }}</span>
                 </li>
 
               </ul>
@@ -63,8 +66,8 @@
             <td>
               <ul class="list-inline">
                 <li>
-                  <span class="label label-default">{{ plugin.python }}</span>
-                  <span class="label label-success">{{ plugin.python }}</span>
+                  <span class="label label-default">{{ bug.last_time }}</span>
+                  <span class="label label-success">{{ bug.usable }}</span>
                 </li>
 
               </ul>

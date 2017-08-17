@@ -1,0 +1,125 @@
+{% extends 'base_site.html' %}
+{% block content %}
+    <div class="container theme-showcase" role="main">
+
+    <div class="page-header">
+        <ol class="breadcrumb">
+          <li><a href="{% url 'home' %}">主页</a></li>
+          <li><a href="{% url 'plugin_list' %}">插件管理</a></li>
+          <li class="active">{{ object.name }}</li>
+        </ol>
+        <small>基本信息</small>
+    </div>
+
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="col-sm-1 control-label">插件名称</label>
+        <div class="col-sm-6">
+            <label class="checkbox-inline">
+                <span class="label label-default">{{ object.name }}</span>
+            </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">插件类型</label>
+        <div class="col-sm-6">
+            <label class="checkbox-inline">
+                {{ object.get_type_display }}
+                <span class="label label-danger">{{ object.get_risk_display }}</span>
+            </label>
+        </div>
+      </div>
+    </form>
+    <div class="page-header">
+        <small>特殊选项</small>
+    </div>
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="col-sm-1 control-label">插件级别</label>
+        <div class="col-sm-6">
+            <label class="checkbox-inline">
+                {% if object.need == 'H'  %}
+                    <span class="label label-danger">Host</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Port</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Service</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Banner</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">URL</span>
+                {% elif object.need == 'P'  %}
+                    <span class="label label-danger">Host</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Port</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Service</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Banner</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">URL</span>
+                {% elif object.need == 'S'  %}
+                    <span class="label label-danger">Host</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Port</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Service</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">Banner</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">URL</span>
+                {% elif object.need == 'B'  %}
+                    <span class="label label-danger">Host</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Port</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Service</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Banner</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-success">URL</span>
+                {% elif object.need == 'U'  %}
+                    <span class="label label-danger">Host</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Port</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Service</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">Banner</span>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <span class="label label-danger">URL</span>
+                {% endif %}
+                <small>{{ object.get_need_display }}</small>
+            </label>
+        </div>
+      </div>
+    </form>
+
+
+    <div class="page-header">
+        <small>调用说明</small>
+    </div>
+    <p>
+        {{ object.usage }}
+    </p>
+
+    <ol class="breadcrumb">
+        {{ object.result }}
+    </ol>
+
+    <div class="page-header">
+        <small>插件介绍</small>
+    </div>
+    <ol class="breadcrumb">
+        {{ object.description }}
+    </ol>
+    <div class="page-header"></div>
+
+    <a class="btn btn-success" href="#">下载插件</a>
+    <a class="btn btn-danger" href="#">删除</a>
+
+
+    </div>
+{% endblock %}

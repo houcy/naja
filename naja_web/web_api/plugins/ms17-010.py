@@ -7,12 +7,34 @@ import struct
 # ^([01]?\d\d?|2[0-4]\d|25[0-5])\.([01]?\d\d?|2[0-4]\d|25[0-5])\.([01]?\d\d?|2[0-4]\d|25[0-5])\.([01]?\d\d?|2[0-4]\d|25[0-5])$
 # re_ip = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})')
 
-
 '''
 https://support.microsoft.com/zh-cn/help/204279/direct-hosting-of-smb-over-tcp-ip
 http://blog.csdn.net/w83761456/article/details/21171085
 http://blog.csdn.net/crylearner/article/details/38521685
 '''
+
+class ScanModule:
+
+    informaiton = {
+        'name': 'ms17-010',
+        'result': '',
+        'description': None,
+    }
+
+    check_arguments = {
+        'host': ['alive'],
+        'port': [445, 139],
+        'proto': ['TCP'],
+        'Service': ['microsoft-ds'],
+        'SBanner': '',
+        'URL': '',
+        'UBanner': '',
+        'exp_argv': ['host', 'port'],
+    }
+
+    def exp(self, host):
+
+        pass
 
 class SMB_Header(Structure):
 
@@ -31,11 +53,8 @@ class SMB_Header(Structure):
         ("user_id", c_uint16),
         ("multiplex_id", c_uint16)
     ]
-
-
     def __new__(self, buffer=None):
         return self.from_buffer_copy(buffer)
-
     def __init__(self, buffer):
         pass
 

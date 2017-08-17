@@ -1,0 +1,73 @@
+{% extends 'base_site.html' %}
+{% block content %}
+    <div class="container theme-showcase" role="main">
+
+    <div class="page-header">
+        <ol class="breadcrumb">
+          <li><a href="#">主页</a></li>
+          <li><a href="#">插件管理</a></li>
+          <li class="active">新建插件</li>
+        </ol>
+        <small>基本信息</small>
+    </div>
+
+    <form class="form-horizontal" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="col-sm-1 control-label">插件名称</label>
+        <div class="col-sm-6">
+          {{ form.name }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">插件类型</label>
+        <div class="col-sm-6">
+          {{ form.type }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">危险等级</label>
+        <div class="col-sm-6">
+          {{ form.risk }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">文件路径</label>
+        <div class="col-sm-6">
+          {{ form.exec_path }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">用法</label>
+        <div class="col-sm-6">
+          {{ form.usage }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">描述</label>
+        <div class="col-sm-6">
+          {{ form.description }}
+        </div>
+      </div>
+
+      <div class="page-header">
+          <small>高级选项</small>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 control-label">xx插件</label>
+        <div class="col-sm-6">
+
+        </div>
+      </div>
+
+
+      <div class="page-header"></div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">创建</button>
+      </div>
+
+    </form>
+
+    </div>
+{% endblock %}

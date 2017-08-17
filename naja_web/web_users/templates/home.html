@@ -1,0 +1,42 @@
+{% extends 'base_site.html' %}
+{% block content %}
+
+
+<div class="container theme-showcase" role="main">
+
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <form class="form-horizontal">
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group">
+              <div class="input-group" v-if="inputType=='urlpath' && websiteConfig.name!='CMDChop'">
+                  <span class="input-group-addon" id="basic-addon1">关键词</span>
+                  <input type="text" class="form-control" placeholder="{{ websiteConfig.inputHint }}" v-model="input" >
+              </div>
+          </div>
+          <div class="form-group">
+              <button type="button" class="btn btn-chop pull-right" v-on:click="submitPayload">搜索</button>
+          </div>
+          <div class="form-group">
+            <ul class="list-inline" id="samples_ul">
+                <li class="sample_text">Samples:</li>
+                <li class="sample_cases" v-for="sample in samples">
+                    <code><a v-text="sample.payload" v-on:click="submitSample(sample.payload, sample.type)">MS17-010</a></code>
+                </li>
+            </ul>
+          </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

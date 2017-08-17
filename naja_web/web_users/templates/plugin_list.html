@@ -2,20 +2,16 @@
 {% block content %}
     <div class="container theme-showcase" role="main">
 
-
-
       <div class="page-header">
         <ol class="breadcrumb">
           <li><a href="#">主页</a></li>
-          <li><a href="#">漏洞库</a></li>
-          <li class="active">漏洞列表</li>
+          <li><a href="#">插件管理</a></li>
+          <li class="active">插件列表</li>
         </ol>
-
         <form class="form-horizontal">
           <div class="form-group">
-
             <div class="col-sm-3">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="主机、国家或漏洞名称">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="插件名称、类型、级别">
             </div>
             <div class="col-sm-1">
               <a  type="submit" class="btn btn-sm btn-success">搜索</a>
@@ -25,77 +21,65 @@
 
             <div class="col-sm-12">
               <span class="label label-default">Search:</span>
-              <span class="label label-success">host:202.*</span>
-              <span class="label label-success">bug:ms17-010</span>
-              <span class="label label-success">country:美国</span>
-              <span class="label label-success">Port:80</span>
+              <span class="label label-success">ms17-010</span>
+              <span class="label label-success">type:远程代码执行</span>
             </div>
           </div>
-
         </form>
-
       </div>
-
       <!-- start user projects -->
       <table class="data table table-striped">
         <thead>
           <tr>
-            <th>地区</th>
-            <th>主机</th>
-            <th>Port</th>
-            <th>漏洞</th>
-            <th>路径</th>
-            <th>最近发现时间</th>
-            <th>操作</th>
+            <th>插件名称</th>
+            <th>插件类型</th>
+            <th>插件级别</th>
+            <th>说明</th>
+            <th>#</th>
           </tr>
         </thead>
         <tbody>
-          {% for bug in object_list %}
+          {% for object in object_list %}
           <tr>
-            <td>{{ bug.country }}</td>
-            <td>{{ bug.host }}</td>
-            <td>{{ bug.port }}</td>
+            <td>{{ object.name }}</td>
             <td>
               <ul class="list-inline">
                 <li>
-                  <span class="label label-default">{{ bug.bug_name }}</span>
-                  <span class="label label-danger">{{ bug.bug_class }}</span>
+                  <span class="label label-default">{{ object.get_type_display }}</span>
+                  <span class="label label-danger">{{ object.get_risk_display }}</span>
                 </li>
-
-              </ul>
-            </td>
-            <td>{{ bug.road }}</td>
-            <td>
-              <ul class="list-inline">
-                <li>
-                  <span class="label label-default">{{ bug.last_time }}</span>
-                  <span class="label label-success">{{ bug.usable }}</span>
-                </li>
-
               </ul>
             </td>
             <td>
-              <a href="task_host_details.html" class="btn btn-default btn-xs">详情</a>
-              <a href="task_host_details.html" class="btn btn-danger btn-xs">更新</a>
-              <a href="task_host_details.html" class="btn btn-warning btn-xs">删除</a>
+                <span class="label label-danger">Host</span>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span class="label label-danger">Port</span>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span class="label label-success">Service</span>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span class="label label-success">Banner</span>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span class="label label-success">URL</span>
+            </td>
+            <td>{{ object.description }}</td>
+            <td>
+              <a href="/plugin/details/{{ object.id }}" class="btn btn-default btn-xs">详情</a>
             </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-      <!-- end user projects -->
-
 
       <div class="page-header"></div>
-
-
-      <nav aria-label="...">
-        <ul class="pager">
-          <li class="previous"><a href="#">上一页</a></li>
-          <li class="next"><a href="#">下一页</a></li>
-        </ul>
-      </nav>
-
-
+      {% if is_paginated %}
+          <ul class="pager">
+          {% if page_obj.has_previous %}
+            <li class="previous"><a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">上一页</a></li>
+          {% endif %}
+          {% if page_obj.has_next %}
+            <li class="next"><a href="{{ request.path }}?page={{ page_obj.next_page_number }}">下一页</a></li>
+          {% endif %}
+          </ul>
+      {% endif %}
     </div>
 {% endblock %}

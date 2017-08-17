@@ -8,44 +8,112 @@
           <li><a href="#">任务管理</a></li>
           <li class="active">新建任务</li>
         </ol>
+        <small>基本情况</small>
+
     </div>
 
-    <form class="form-horizontal">
-
-
+    <form class="form-horizontal" method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-1 control-label">任务名称</label>
         <div class="col-sm-6">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="任务名称">
+          {{ form.name }}
         </div>
       </div>
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-1 control-label">目标列表</label>
         <div class="col-sm-6">
-            <textarea class="form-control" rows="10" placeholder="目标列表"></textarea>
+            {{ form.targets }}
+        </div>
+        <div class="col-sm-5">
+            <p>支持的目标包括：</p>
+            <div  class="list-inline ">
+                <small>网络路径：</small>
+                <span class="label label-default">URL</span>
+            </div>
+            <div  class="list-inline ">
+                <small>搜索引擎：</small>
+                <span class="label label-default">Google</span>
+                <span class="label label-default">Shodan</span>
+                <span class="label label-default">Zoomeye</span>
+                <span class="label label-default">PunkSpider</span>
+            </div>
+            <div  class="list-inline ">
+                <small>随机地址：</small>
+                <span class="label label-default">IPv4</span>
+                <span class="label label-default">IPv4-WWW</span>
+                <span class="label label-default">IPv4-LAN</span>
+                <span class="label label-default">IPv4-Defined</span>
+                <span class="label label-default">Domain</span>
+                <a href="help"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
+            </div>
         </div>
       </div>
 
-
+      <div class="page-header">
+          <small>高级选项</small>
+      </div>
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-1 control-label">可用插件</label>
+        <label for="inputEmail3" class="col-sm-1 control-label">隐蔽扫描</label>
         <div class="col-sm-6">
+          <div>
             <label class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox1" value="option1">
-              <span class="label label-default">ms17-010</span>
+                <input type="checkbox"  />
+                <span class="label label-danger">是</span>
             </label>
             <label class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox2" value="option2">
-              <span class="label label-default">s-020</span>
+                <input type="checkbox"   />
+                <span class="label label-danger">UDP</span>
             </label>
             <label class="checkbox-inline">
-              <input type="checkbox" id="inlineCheckbox3" value="option3">
-              <span class="label label-default">nmap</span>
+                <input type="checkbox"  />
+                <span class="label label-danger">HTTP</span>
             </label>
+            <label class="checkbox-inline">
+                <input type="checkbox"  />
+                <span class="label label-danger">IPv6</span>
+            </label>
+          </div>
 
         </div>
       </div>
+
+      <div class="page-header">
+         <small>可选插件</small>
+      </div>
+
+    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+      <li role="presentation" class="active">
+          <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">主机</a>
+      </li>
+      <li role="presentation" class="">
+          <a href="#tab_content2" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">端口</a>
+      </li>
+      <li role="presentation" class="">
+          <a href="#tab_content3" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">指纹</a>
+      </li>
+      <li role="presentation" class="">
+          <a href="#tab_content4" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">URL</a>
+      </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+      <div class="form-group">
+        <div class="col-sm-12">
+            {{ form.plugin }}
+        </div>
+      </div>
+
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+      </div>
+    </div>
+
+
       <div class="page-header"></div>
+
       <div class="form-group">
         <button type="submit" class="btn btn-success">创建</button>
       </div>
